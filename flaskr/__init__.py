@@ -1,6 +1,9 @@
 import os
+import datetime
 
+import click
 from flask import Flask
+from flask import current_app, g
 
 
 def create_app(test_config=None):
@@ -9,6 +12,8 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        SQLALCHEMY_DATABASE_URI='sqlite:///' + os.path.join(app.instance_path, 'flaskr2.sqlite'),
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
 
     if test_config is None:
@@ -24,9 +29,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    from flaskr import commands
+    commands.init_app(app)
 
-    from . import database
-    database.init_app(app)
+    from .models import db
+    db.init_app(app)
 
     from .views import auth
     app.register_blueprint(auth.bp)
