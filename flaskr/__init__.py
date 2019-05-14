@@ -5,6 +5,11 @@ import click
 from flask import Flask
 from flask import current_app, g
 
+from flask_restplus import Api, Resource
+
+
+api = Api()
+
 
 def create_app(test_config=None):
     # create and configure the app
@@ -38,8 +43,21 @@ def create_app(test_config=None):
     from .views import auth
     app.register_blueprint(auth.bp)
 
-    from .views import blog
-    app.register_blueprint(blog.bp)
-    app.add_url_rule('/', endpoint='index')
+    # from .views import blog
+    # app.register_blueprint(blog.bp)
+    # app.add_url_rule('/', endpoint='index')
+
+
+    api.init_app(app)
+
+    @api.route('/language')
+    class Language(Resource):
+        def get(self):
+            return {
+                'hello': 'world',
+            }
+
+        def post(self):
+            pass
 
     return app
