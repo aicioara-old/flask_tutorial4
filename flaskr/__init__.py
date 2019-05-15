@@ -4,29 +4,18 @@ import datetime
 import click
 from flask import Flask
 from flask import current_app, g
-
 from flask_restplus import Api, Resource
 
+from .config import config_by_name
 
 api = Api()
 
 
-def create_app(test_config=None):
+def create_app(config_name='dev'):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-        SQLALCHEMY_DATABASE_URI='sqlite:///' + os.path.join(app.instance_path, 'flaskr2.sqlite'),
-        SQLALCHEMY_TRACK_MODIFICATIONS=False,
-    )
 
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
+    app.config.from_object(config_by_name[config_name])
 
     # ensure the instance folder exists
     try:
