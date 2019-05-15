@@ -8,4 +8,4 @@ cd ..
 
 source venv/bin/activate
 
-FLASK_APP=flaskr FLASK_ENV=development flask run
+FLASK_ENV=development python manage.py run
