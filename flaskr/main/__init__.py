@@ -5,10 +5,14 @@ import click
 from flask import Flask
 from flask import current_app, g
 from flask_restplus import Api, Resource
+from flask_sqlalchemy import SQLAlchemy
 
 from .config import config_by_name
 
 api = Api()
+
+db = SQLAlchemy()
+
 
 
 def create_app(config_name='dev'):
@@ -26,11 +30,10 @@ def create_app(config_name='dev'):
     from . import commands
     commands.init_app(app)
 
-    from .models import db
     db.init_app(app)
 
-    from .views import auth
-    app.register_blueprint(auth.bp)
+    # from .views import auth
+    # app.register_blueprint(auth.bp)
 
     # from .views import blog
     # app.register_blueprint(blog.bp)

@@ -21,3 +21,4 @@ npm-debug.log
 # Extras
 temp/
 instance/
+*.sqlite3
