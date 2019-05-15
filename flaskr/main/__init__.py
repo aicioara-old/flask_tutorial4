@@ -23,7 +23,7 @@ def create_app(config_name='dev'):
     except OSError:
         pass
 
-    from flaskr import commands
+    from . import commands
     commands.init_app(app)
 
     from .models import db
