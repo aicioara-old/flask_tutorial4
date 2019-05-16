@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from .config import config_by_name
 
-api = Api()
+# api = Api()
 
 db = SQLAlchemy()
 
@@ -40,16 +40,16 @@ def create_app(config_name='dev'):
     # app.add_url_rule('/', endpoint='index')
 
 
-    api.init_app(app)
+    # api.init_app(app)
 
-    @api.route('/language')
-    class Language(Resource):
-        def get(self):
-            return {
-                'hello': 'world',
-            }
+    # @api.route('/language')
+    # class Language(Resource):
+    #     def get(self):
+    #         return {
+    #             'hello': 'world',
+    #         }
 
-        def post(self):
-            pass
+    #     def post(self):
+    #         pass
 
     return app

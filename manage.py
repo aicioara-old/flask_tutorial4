@@ -8,8 +8,10 @@ from flaskr.main import create_app, db
 
 # Add all models individually here
 from flaskr.main.model import user
+from flaskr.main.blueprint import bp
 
 app = create_app(os.getenv('PYTHON_ENVIRONMENT') or 'dev')
+app.register_blueprint(bp)
 
 app.app_context().push()
 
