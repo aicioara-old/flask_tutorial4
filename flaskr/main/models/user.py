@@ -3,7 +3,7 @@ import datetime
 import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from ..model.invalid_token import InvalidToken
+from ..models import InvalidToken
 from ..config import key
 from .. import db
 

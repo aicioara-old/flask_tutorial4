@@ -2,7 +2,7 @@ import unittest
 import datetime
 
 from flaskr.main import db
-from flaskr.main.model.user import User
+from flaskr.main.models import User
 from flaskr.test.base import BaseTestCase
 
 

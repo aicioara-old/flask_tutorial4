@@ -1,5 +1,4 @@
-from ..model.user import User
-from ..model.invalid_token import InvalidToken
+from ..models import User, InvalidToken
 from .. import db
 
 
