@@ -19,8 +19,8 @@ api = Api(bp,
     license_url='https://opensource.org/licenses/MIT',
 )
 
-from .controller.user_controller import api as user_ns
+from .views.user_views import api as user_ns
 api.add_namespace(user_ns)
 
-from .controller.auth_controller import api as auth_ns
+from .views.auth_views import api as auth_ns
 api.add_namespace(auth_ns)
