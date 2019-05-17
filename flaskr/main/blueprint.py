@@ -15,12 +15,12 @@ authorizations = {
 }
 
 api = Api(bp,
-          title='FLASK RESTPLUS API BOILER-PLATE WITH JWT',
-          version='1.0',
-          security='Bearer Auth',
-          authorizations=authorizations,
-          description='a boilerplate for flask restplus web service'
-          )
+    title='FLASK RESTPLUS API BOILER-PLATE WITH JWT',
+    description='A boilerplate for flask restplus web service',
+    version='1.0',
+    security='Bearer Auth',
+    authorizations=authorizations,
+)
 
 api.add_namespace(user_ns, path='/user')
 api.add_namespace(auth_ns)
