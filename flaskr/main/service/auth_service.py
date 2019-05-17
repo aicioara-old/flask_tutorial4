@@ -61,7 +61,11 @@ class Auth:
     @staticmethod
     def get_logged_in_user(new_request):
             # get the auth token
-            _, auth_token = new_request.headers.get('Authorization').split(' ')
+            authorization = new_request.headers.get('Authorization')
+            if authorization is None:
+                auth_token = None
+            else:
+                _, auth_token = authorization.split(' ')
 
             if auth_token:
                 resp = User.decode_auth_token(auth_token)

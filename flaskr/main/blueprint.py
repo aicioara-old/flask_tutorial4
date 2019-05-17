@@ -6,9 +6,19 @@ from .controller.auth_controller import api as auth_ns
 
 bp = Blueprint('api', __name__)
 
+authorizations = {
+    'Bearer Auth': {
+        'type': 'apiKey',
+        'in': 'header',
+        'name': 'Authorization'
+    },
+}
+
 api = Api(bp,
           title='FLASK RESTPLUS API BOILER-PLATE WITH JWT',
           version='1.0',
+          security='Bearer Auth',
+          authorizations=authorizations,
           description='a boilerplate for flask restplus web service'
           )
 
