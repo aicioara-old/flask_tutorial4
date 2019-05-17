@@ -24,7 +24,7 @@ def run():
 @manager.command
 def test():
     """Runs the unit tests."""
-    tests = unittest.TestLoader().discover('flaskr/test/backend', pattern='test*.py')
+    tests = unittest.TestLoader().discover('test/backend', pattern='test*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
         return 0
