@@ -1,9 +1,6 @@
 from flask_restplus import Api
 from flask import Blueprint
 
-from .controller.user_controller import api as user_ns
-from .controller.auth_controller import api as auth_ns
-
 bp = Blueprint('api', __name__, url_prefix='/api')
 
 api = Api(bp,
@@ -22,5 +19,8 @@ api = Api(bp,
     license_url='https://opensource.org/licenses/MIT',
 )
 
+from .controller.user_controller import api as user_ns
 api.add_namespace(user_ns)
+
+from .controller.auth_controller import api as auth_ns
 api.add_namespace(auth_ns)

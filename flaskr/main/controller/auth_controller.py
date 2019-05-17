@@ -2,7 +2,7 @@ from flask import request
 from flask_restplus import Resource
 
 from ..service import auth_service
-from ..util.serializers import AuthSerializer
+from ..serializers import AuthSerializer
 
 api = AuthSerializer.api
 dto = AuthSerializer.dto

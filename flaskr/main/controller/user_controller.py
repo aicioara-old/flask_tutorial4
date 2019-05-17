@@ -1,7 +1,7 @@
 from flask import request
 from flask_restplus import Resource
 
-from ..util.serializers import UserSerializer
+from ..serializers import UserSerializer
 from ..service import user_service
 from ..util.decorator import token_required
 
