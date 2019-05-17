@@ -3,7 +3,7 @@ from functools import wraps
 from flask import request
 
 from ..models import User, InvalidToken
-from .. import db
+from ..application import db
 
 
 def login_user(data):

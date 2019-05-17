@@ -1,6 +1,6 @@
 import datetime
 
-from .. import db
+from ..application import db
 
 
 class InvalidToken(db.Model):
