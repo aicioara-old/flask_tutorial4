@@ -7,7 +7,7 @@ from flask_script import Manager
 from flaskr.main import create_app, db
 
 # Add all models individually here
-# from flaskr.main.model import user, blacklist
+from flaskr.main.model import *
 from flaskr.main.blueprint import bp
 
 app = create_app(os.getenv('PYTHON_ENVIRONMENT') or 'dev')

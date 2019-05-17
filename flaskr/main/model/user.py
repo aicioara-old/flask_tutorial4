@@ -3,7 +3,7 @@ import datetime
 import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from ..model.blacklist import BlacklistToken
+from ..model.invalid_token import InvalidToken
 from ..config import key
 from .. import db
 
@@ -65,7 +65,7 @@ class User(db.Model):
         """
         try:
             payload = jwt.decode(auth_token, key)
-            is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
+            is_blacklisted_token = InvalidToken.check_blacklist(auth_token)
             if is_blacklisted_token:
                 return 'Token blacklisted. Please log in again.'
             else:

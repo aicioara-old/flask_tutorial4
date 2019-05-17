@@ -2,7 +2,7 @@ from flask import request
 from flask_restplus import Resource
 
 from ..util.serializers import UserSerializer
-from ..service.user_service import save_new_user, get_all_users, get_a_user
+from ..service import user_service
 from ..util.decorator import token_required
 
 api = UserSerializer.api
@@ -14,7 +14,7 @@ class UserList(Resource):
     @api.marshal_list_with(dto, envelope='data')
     def get(self):
         """List all registered Users"""
-        return get_all_users()
+        return user_service.get_all_users()
 
     @api.response(201, 'User successfully created.')
     @api.doc('create a new user')
@@ -22,7 +22,7 @@ class UserList(Resource):
     def post(self):
         """Creates a new User """
         data = request.json
-        return save_new_user(data=data)
+        return user_service.save_new_user(data=data)
 
 
 @api.route('/<public_id>')
@@ -33,7 +33,7 @@ class User(Resource):
     @api.marshal_with(dto, code=200)
     def get(self, public_id):
         """Get a specific user"""
-        user = get_a_user(public_id)
+        user = user_service.get_a_user(public_id)
         if not user:
             api.abort(404)
         else:
