@@ -3,7 +3,8 @@ import datetime
 
 from flaskr.main import db
 from flaskr.main.models import User
-from flaskr.test.base import BaseTestCase
+
+from base import BaseTestCase
 
 
 class TestUserModel(BaseTestCase):

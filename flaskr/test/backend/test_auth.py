@@ -1,7 +1,7 @@
 import unittest
 import json
 
-from flaskr.test.base import BaseTestCase
+from base import BaseTestCase
 
 
 def register_user(self):
