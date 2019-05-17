@@ -5,12 +5,12 @@ from flask import current_app
 from flask_testing import TestCase
 
 from manage import app
-from flaskr.main.config import basedir
+from src.backend.config import basedir
 
 
 class TestDevelopmentConfig(TestCase):
     def create_app(self):
-        app.config.from_object('flaskr.main.config.DevelopmentConfig')
+        app.config.from_object('src.backend.config.DevelopmentConfig')
         return app
 
     def test_app_is_development(self):
@@ -24,7 +24,7 @@ class TestDevelopmentConfig(TestCase):
 
 class TestTestingConfig(TestCase):
     def create_app(self):
-        app.config.from_object('flaskr.main.config.TestingConfig')
+        app.config.from_object('src.backend.config.TestingConfig')
         return app
 
     def test_app_is_testing(self):
@@ -37,7 +37,7 @@ class TestTestingConfig(TestCase):
 
 class TestProductionConfig(TestCase):
     def create_app(self):
-        app.config.from_object('flaskr.main.config.ProductionConfig')
+        app.config.from_object('src.backend.config.ProductionConfig')
         return app
 
     def test_app_is_production(self):

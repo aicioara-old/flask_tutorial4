@@ -4,8 +4,8 @@ import unittest
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
-from flaskr.main import create_app, db
-from flaskr.main.models import * # To ensure that all models are tracked
+from src.backend import create_app, db
+from src.backend.models import * # To ensure that all models are tracked
 
 app = create_app(os.getenv('PYTHON_ENVIRONMENT') or 'dev')
 
