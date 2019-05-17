@@ -2,10 +2,10 @@ from flask import request
 from flask_restplus import Resource
 
 from flaskr.main.service.auth_service import Auth
-from ..util.dto import AuthDto
+from ..util.serializers import AuthSerializer
 
-api = AuthDto.api
-user_auth = AuthDto.user_auth
+api = AuthSerializer.api
+dto = AuthSerializer.dto
 
 
 @api.route('/login')
@@ -14,7 +14,7 @@ class UserLogin(Resource):
         User Login Resource
     """
     @api.doc('user login')
-    @api.expect(user_auth, validate=True)
+    @api.expect(dto, validate=True)
     def post(self):
         # get the post data
         post_data = request.json

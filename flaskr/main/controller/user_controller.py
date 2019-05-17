@@ -1,25 +1,25 @@
 from flask import request
 from flask_restplus import Resource
 
-from ..util.dto import UserDto
+from ..util.serializers import UserSerializer
 from ..service.user_service import save_new_user, get_all_users, get_a_user
 from ..util.decorator import token_required
 
-api = UserDto.api
-_user = UserDto.user
+api = UserSerializer.api
+dto = UserSerializer.dto
 
 
 @api.route('/')
 class UserList(Resource):
     @api.doc('list_of_registered_users')
-    @api.marshal_list_with(_user, envelope='data')
+    @api.marshal_list_with(dto, envelope='data')
     def get(self):
         """List all registered users"""
         return get_all_users()
 
     @api.response(201, 'User successfully created.')
     @api.doc('create a new user')
-    @api.expect(_user, validate=True)
+    @api.expect(dto, validate=True)
     def post(self):
         """Creates a new User """
         data = request.json
@@ -31,7 +31,7 @@ class UserList(Resource):
 @api.response(404, 'User not found.')
 class User(Resource):
     @api.doc('get a user')
-    @api.marshal_with(_user, code=200)
+    @api.marshal_with(dto, code=200)
     def get(self, public_id):
         """get a user given its identifier"""
         user = get_a_user(public_id)
