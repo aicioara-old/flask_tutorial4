@@ -15,7 +15,7 @@ class Auth:
                     response_object = {
                         'status': 'success',
                         'message': 'Successfully logged in.',
-                        'Authorization': auth_token.decode()
+                        'Authorization': auth_token.decode('utf-8')
                     }
                     return response_object, 200
             else:
@@ -61,7 +61,8 @@ class Auth:
     @staticmethod
     def get_logged_in_user(new_request):
             # get the auth token
-            auth_token = new_request.headers.get('Authorization')
+            _, auth_token = new_request.headers.get('Authorization').split(' ')
+
             if auth_token:
                 resp = User.decode_auth_token(auth_token)
                 if not isinstance(resp, str):
