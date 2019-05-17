@@ -3,6 +3,7 @@ from flask_restplus import Resource
 
 from ..util.dto import UserDto
 from ..service.user_service import save_new_user, get_all_users, get_a_user
+from ..util.decorator import token_required
 
 api = UserDto.api
 _user = UserDto.user
@@ -30,7 +31,8 @@ class UserList(Resource):
 @api.response(404, 'User not found.')
 class User(Resource):
     @api.doc('get a user')
-    @api.marshal_with(_user)
+    @token_required
+    @api.marshal_with(_user, code=200)
     def get(self, public_id):
         """get a user given its identifier"""
         user = get_a_user(public_id)
