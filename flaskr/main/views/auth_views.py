@@ -2,8 +2,8 @@ from flask import request
 from flask_restplus import Resource
 
 from ..serializers import AuthSerializer
-from ..service import auth_service
-from ..service.auth_service import token_required
+from ..managers import auth_manager
+from ..managers.auth_manager import token_required
 
 
 api = AuthSerializer.api
@@ -16,7 +16,7 @@ class UserLogin(Resource):
     def post(self):
         """Login and retrieve JWT token"""
         post_data = request.json
-        return auth_service.login_user(data=post_data)
+        return auth_manager.login_user(data=post_data)
 
 
 
@@ -25,4 +25,4 @@ class LogoutAPI(Resource):
     def post(self):
         """Logout and invalidate JWT token"""
         auth_header = request.headers.get('Authorization')
-        return auth_service.logout_user(data=auth_header)
+        return auth_manager.logout_user(data=auth_header)
