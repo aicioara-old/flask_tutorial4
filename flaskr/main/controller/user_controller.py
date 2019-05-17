@@ -11,10 +11,9 @@ dto = UserSerializer.dto
 
 @api.route('/')
 class UserList(Resource):
-    @api.doc('list_of_registered_users')
     @api.marshal_list_with(dto, envelope='data')
     def get(self):
-        """List all registered users"""
+        """List all registered Users"""
         return get_all_users()
 
     @api.response(201, 'User successfully created.')
@@ -33,7 +32,7 @@ class User(Resource):
     @api.doc('get a user')
     @api.marshal_with(dto, code=200)
     def get(self, public_id):
-        """get a user given its identifier"""
+        """Get a specific user"""
         user = get_a_user(public_id)
         if not user:
             api.abort(404)

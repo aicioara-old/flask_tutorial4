@@ -1,8 +1,8 @@
 import uuid
 import datetime
 
-from flaskr.main import db
-from flaskr.main.model.user import User
+from .. import db
+from ..model.user import User
 
 
 def save_new_user(data):

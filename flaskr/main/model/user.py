@@ -3,7 +3,7 @@ import datetime
 import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from flaskr.main.model.blacklist import BlacklistToken
+from ..model.blacklist import BlacklistToken
 from ..config import key
 from .. import db
 

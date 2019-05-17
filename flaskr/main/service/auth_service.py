@@ -1,9 +1,8 @@
-from flaskr.main.model.user import User
+from ..model.user import User
 from ..service.blacklist_service import save_token
 
 
 class Auth:
-
     @staticmethod
     def login_user(data):
         try:

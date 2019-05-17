@@ -1,5 +1,5 @@
-from flaskr.main import db
-from flaskr.main.model.blacklist import BlacklistToken
+from .. import db
+from ..model.blacklist import BlacklistToken
 
 
 def save_token(token):
